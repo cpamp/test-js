@@ -44,4 +44,12 @@ export class Assert {
     public isNull = (actual) => {
         return this.equals(null, actual);
     };
+
+    public pass = () => {
+        return this.passed(this.fn + ' ' + Utilities.PASSED)
+    };
+
+    public fail = () => {
+        return this.failed(this.fn + ' ' + Utilities.FAILED);
+    };
 }

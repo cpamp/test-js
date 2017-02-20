@@ -18,10 +18,10 @@ function assert(pf: string, f, e, a, eq: string) {
     return f + " " + pf + ": " + toStr(e) + " " + eq + " " + toStr(a);
 }
 
-const FAILED = "Failed";
-const PASSED = "Passed";
-
 export module Utilities {
+    export const FAILED = "Failed";
+    export const PASSED = "Passed";
+
     export function getFuncName(func) {
         return func.name || getName(func);
     }
