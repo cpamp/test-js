@@ -7,18 +7,26 @@ const NOT_EQALS: string = "!==";
 export class Assert {
     public success: boolean;
     private fn: string;
+    private result: string;
+
     constructor(fn) {
         this.fn = Utilities.getFuncName(fn);
     }
 
     private failed(str: string) {
         this.success = false;
-        console.error(str);
+        this.result = str;
     };
 
     private passed(str: string) {
-        this.success = true;
-        console.log(str);
+        if (this.success == null) {
+            this.success = true;
+            this.result = str;
+        }
+    };
+
+    public getResult = (): string => {
+        return this.result;
     };
 
     public equals = (expected, actual) => {
@@ -38,18 +46,22 @@ export class Assert {
     };
 
     public isNotNull = (actual) => {
-        return this.notEquals(null, actual);
+        this.notEquals(null, actual);
     };
 
     public isNull = (actual) => {
-        return this.equals(null, actual);
+        this.equals(null, actual);
     };
 
     public pass = () => {
-        return this.passed(this.fn + ' ' + Utilities.PASSED)
+        this.passed(this.fn + ' ' + Utilities.PASSED)
     };
 
     public fail = () => {
-        return this.failed(this.fn + ' ' + Utilities.FAILED);
+        this.failed(this.fn + ' ' + Utilities.FAILED);
+    };
+
+    public failedOnException = (e) => {
+        this.failed(this.fn + ' ' + Utilities.FAILED + ': ' + e);
     };
 }

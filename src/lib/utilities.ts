@@ -31,6 +31,6 @@ export module Utilities {
     }
 
     export function assertPass(f, e, a, eq: string) {
-        return assert(PASSED, f, e, a, eq);
+        return f + " " + PASSED;
     }
 }
