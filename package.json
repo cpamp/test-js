@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^2.1.6"
+  },
+  "dependencies": {
+    "colorful-text": "0.0.1"
   }
 }

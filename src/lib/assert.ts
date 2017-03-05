@@ -1,5 +1,6 @@
 
 import { Utilities } from './utilities';
+import * as colors from 'colorful-text';
 
 const EQUALS: string = "===";
 const NOT_EQALS: string = "!==";
@@ -15,13 +16,13 @@ export class Assert {
 
     private failed(str: string) {
         this.success = false;
-        this.result = str;
+        this.result = colors.fg.red(str);
     };
 
     private passed(str: string) {
         if (this.success == null) {
             this.success = true;
-            this.result = str;
+            this.result = colors.fg.green(str);
         }
     };
 
@@ -31,7 +32,7 @@ export class Assert {
 
     public equals(expected, actual) {
         if (expected === actual) {
-            this.passed(Utilities.assertPass(this.fn, expected, actual, EQUALS));
+            this.passed(Utilities.assertPass(this.fn));
         } else {
             this.failed(Utilities.assertFail(this.fn, expected, actual, EQUALS));
         }
@@ -39,7 +40,7 @@ export class Assert {
 
     public notEquals(expected, actual) {
         if (expected !== actual) {
-            this.passed(Utilities.assertPass(this.fn, expected, actual, NOT_EQALS));
+            this.passed(Utilities.assertPass(this.fn));
         } else {
             this.failed(Utilities.assertFail(this.fn, expected, actual, NOT_EQALS));
         }
@@ -54,7 +55,7 @@ export class Assert {
     };
 
     public pass() {
-        this.passed(this.fn + ' ' + Utilities.PASSED)
+        this.passed(Utilities.assertPass(this.fn));
     };
 
     public fail() {

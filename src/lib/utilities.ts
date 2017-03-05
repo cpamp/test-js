@@ -1,4 +1,4 @@
-
+import * as colors from 'colorful-text';
 
 function getName(func) {
     var f = 'function '.length;
@@ -27,10 +27,10 @@ export module Utilities {
     }
 
     export function assertFail(f, e, a, eq: string) {
-        return assert(FAILED, f, e, a, eq);
+        return colors.fg.red(assert(FAILED, f, e, a, eq));
     }
 
-    export function assertPass(f, e, a, eq: string) {
-        return f + " " + PASSED;
+    export function assertPass(f) {
+        return colors.fg.green(f + " " + PASSED);
     }
 }
