@@ -33,11 +33,11 @@ export class Test {
 
     constructor(private name: string) { }
 
-    public "new" = (func: IAssertion) => {
+    public "new"(func: IAssertion) {
         this.tests.add(func, new Assert(func));
     };
 
-    public run = () => {
+    public run() {
         this.tests.forEach((func, assert) => {
             try {
                 func(assert);

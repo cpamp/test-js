@@ -25,11 +25,11 @@ export class Assert {
         }
     };
 
-    public getResult = (): string => {
+    public getResult(): string {
         return this.result;
     };
 
-    public equals = (expected, actual) => {
+    public equals(expected, actual) {
         if (expected === actual) {
             this.passed(Utilities.assertPass(this.fn, expected, actual, EQUALS));
         } else {
@@ -37,7 +37,7 @@ export class Assert {
         }
     };
 
-    public notEquals = (expected, actual) => {
+    public notEquals(expected, actual) {
         if (expected !== actual) {
             this.passed(Utilities.assertPass(this.fn, expected, actual, NOT_EQALS));
         } else {
@@ -45,23 +45,23 @@ export class Assert {
         }
     };
 
-    public isNotNull = (actual) => {
+    public isNotNull(actual) {
         this.notEquals(null, actual);
     };
 
-    public isNull = (actual) => {
+    public isNull(actual) {
         this.equals(null, actual);
     };
 
-    public pass = () => {
+    public pass() {
         this.passed(this.fn + ' ' + Utilities.PASSED)
     };
 
-    public fail = () => {
+    public fail() {
         this.failed(this.fn + ' ' + Utilities.FAILED);
     };
 
-    public failedOnException = (e) => {
+    public failedOnException(e) {
         this.failed(this.fn + ' ' + Utilities.FAILED + ': ' + e);
     };
 }
